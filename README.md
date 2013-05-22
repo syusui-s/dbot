@@ -15,7 +15,7 @@ mikutterで動くbot作りたかったので、作りました。
     文章生成のファイルです。文章の生成をここで行います。
 * import\_twilog.rb  
     TwilogからダウンロードできるCSVファイルを分析し、DBに保存します。
-* mikutter\_dbot.rb
+* mikutter\_dbot.rb  
     mikutter用プラグインです。
 
 ## インストール
@@ -34,10 +34,10 @@ mikutterで動くbot作りたかったので、作りました。
 2. import\_twilog.rb を用いて、DBを生成する。  
   この作業は時間がかかりますので、気長にお待ちください。  
   実行権限がない場合は、`$ chmod +x ./import_twilog.rb`して、実行できるようにしてください。  
-  `$ ./import_twilog.rb username_130522.csv words.db`
+  `$ ./import_twilog.rb username_130522.csv words.db`  
   メモリに余裕があれば、/dev/shm/ や RAMDISKにcsvと出力先を指定すると、とても早くなります。  
   例: `$ ./import_twilog.rb /dev/shm/username_130522.csv /dev/shm/words.db`  
-  作業が終わったら、
+  作業が終わったら、dbotのあるフォルダにでも移動してください。
 3. Rubyのインタプリタを立ち上げる  
   Rubyのインタプリタ（irbやpry）を起動します。
 4. 試しに文章を生成してみます  
@@ -54,7 +54,6 @@ mikutterで動くbot作りたかったので、作りました。
 
 ## 生成方法の追加
 generator.rbのSentenceGeneratorクラスに、「gen\_」から始まるインスタンスメソッドを追加してください。  
-
 	
 	def SentenceGenerator
 	  def gen_hogehoge
