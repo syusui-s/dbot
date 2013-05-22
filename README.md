@@ -42,15 +42,11 @@ mikutterで動くbot作りたかったので、作りました。
   Rubyのインタプリタ（irbやpry）を起動します。
 4. 試しに文章を生成してみます  
   インタプリタで実行してみます。  
-  ./test.dbには3で作ったDBファイルのパスを指定してください。 
+  ./test.dbには3で作ったDBファイルのパスを指定してください。
 
-	`
-	require './generator'  
-	gen=SentenceGenerator.new(WordsDB("./test.db"))  
-	gen.random  
-	`
-
-  ちゃんと出力されれば成功です。おめでとうございます！  
+  		require './generator'
+  		gen=SentenceGenerator.new(WordsDB("./test.db"))
+  		gen.random
 
 ## 生成方法の追加
 generator.rbのSentenceGeneratorクラスに、「gen\_」から始まるインスタンスメソッドを追加してください。  
