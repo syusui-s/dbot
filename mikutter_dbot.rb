@@ -63,7 +63,7 @@ Plugin.create(:dbot) do
     if((UserConfig[:dbot_lasttwit] + UserConfig[:dbot_timewait]*60) <= Time.now.to_i)
       post
     else 
-      syspost "Notice:だいたい、あと#{(hour==0)?"":(hour.to_s+"時間")}#{(min==0 && hour==0)?"":(min.to_s+"分")}#{sec}秒でつぶやきます。"
+      syspost "Notice:あと#{(hour==0)?"":(hour.to_s+"時間")}#{(min==0 && hour==0)?"":(min.to_s+"分")}#{sec}秒±60秒以内につぶやきます。"
     end
   end
 end
