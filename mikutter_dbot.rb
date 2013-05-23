@@ -61,7 +61,7 @@ Plugin.create(:dbot) do
       min=((remain%3600)/60).to_i
       sec=((remain)%60).to_i
 
-      if(remain<=0) post
+      if(remain<=0) then post
       else syspost "Notice:あと#{(hour==0)?"":(hour.to_s+"時間")}#{(min==0 && hour==0)?"":(min.to_s+"分")}#{sec}秒±60秒以内につぶやきます。"
       end
     end
