@@ -106,13 +106,13 @@ class WordsDB
 
   #############################################################################
   # Random Selector
-  #  DBから条件にあうものをランダムに選択し、それを返す
+  #  DBから条件にあうものをランダムに選択し、それを配列として返す
 
   # idにマッチするものをsucclistから探す
   def random_succ_match_id(id)
     if id.kind_of?(Integer) then 
       @db.execute("select * from succlist where id = ? order by random() limit 1;",id)
-    else nil
+    else []
     end
   end
 
@@ -120,7 +120,7 @@ class WordsDB
   def random_match_pos(pos)
     if pos.kind_of?(String) then
       @db.execute("select * from words where pos = ? order by random() limit 1;",pos)
-     else nil
+     else []
     end
   end
 
