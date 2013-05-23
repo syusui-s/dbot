@@ -3,14 +3,12 @@ require 'sqlite3'
 require 'kconv'
 require 'MeCab'
 
-# set a constant value "MECAB_DICDIR" to use custom dictionary file.
-# if it is not set, this will use system setting.
-# example:
+# dbotは、MeCabのデフォルトの辞書を利用します。
+# 他の辞書が使いたいときは、MECAB_DICDIRにディレクトリのパスを文字列型（String）で指定してください。
+# 例:
 #   MECAB_DICDIR = File.expand_path(File.join(File.dirname(__FILE__), "unidic-mecab-2.1.2_src/unidic/"))
 
-if defined?(MECAB_DICDIR) then MecabParse = MeCab::Tagger.new("-d #{MECAB_DICDIR}")
-else MecabParse = MeCab::Tagger.new("")
-end
+MecabParse =  MeCab::Tagger.new (defined?(MECAB_DICDIR) ? "-d #{MECAB_DICDIR}" : "")
 
 =begin
 テーブルの一覧
@@ -30,6 +28,7 @@ end
  2,1
 =end
 
+# データベースを取り扱うクラス
 class WordsDB
   # コンストラクタ(DBの作成)
   def initialize(filename = 'wordsdata.db')
@@ -162,6 +161,7 @@ class WordsDB
 
 end
 
+# 文をパースするモジュール。他の形態素解析ソフトウェアにも対応できるようにするためのモジュール化。
 module LangParse
   def parse(input)
     m=MecabParse.parse(input).toutf8.split(/\n/).map{|t|t.split(/,/)[0].split(/\t/)}
