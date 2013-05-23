@@ -6,7 +6,7 @@ require 'MeCab'
 # dbotは、MeCabのデフォルトの辞書を利用します。
 # 他の辞書が使いたいときは、MECAB_DICDIRにディレクトリのパスを文字列型（String）で指定してください。
 # 例:
-#   MECAB_DICDIR = File.expand_path(File.join(File.dirname(__FILE__), "unidic-mecab-2.1.2_src/unidic/"))
+# MECAB_DICDIR = File.expand_path(File.join(File.dirname(__FILE__), "unidic-mecab-2.1.2_src/unidic/"))
 
 MecabParse =  MeCab::Tagger.new (defined?(MECAB_DICDIR) ? "-d #{MECAB_DICDIR}" : "")
 

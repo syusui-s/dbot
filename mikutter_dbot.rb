@@ -11,7 +11,7 @@ Plugin.create(:dbot) do
 
   # 設定画面
   settings "dbotの設定"  do 
-    boolean "dbotを作動", :dbot_bool
+    boolean "定期投稿", :dbot_bool
     fileselect "DBファイル", :dbot_dbfile, "~/" 
 
     settings "投稿設定" do
@@ -39,7 +39,7 @@ Plugin.create(:dbot) do
         db=nil
       end
 
-      if not db.nil? and UserConfig[:dbot_bool] then
+      if not db.nil? then
         gen=SentenceGenerator.new(db)
         tweet=gen.exec(UserConfig[:dbot_gentype])
         Service.primary.update(:message => "#{tweet} #{UserConfig[:dbot_footer]}")
@@ -54,16 +54,16 @@ Plugin.create(:dbot) do
   end
 
   on_period do |service|
-    # 残り時間の計算
-    remain=(UserConfig[:dbot_lasttwit]+UserConfig[:dbot_timewait]*60)-Time.now.to_i
-    hour=(remain/3600).to_i
-    min=((remain%3600)/60).to_i
-    sec=((remain)%60).to_i
+    if(UserConfig[:dbot_bool]) then
+      # 残り時間の計算
+      remain=(UserConfig[:dbot_lasttwit]+UserConfig[:dbot_timewait]*60)-Time.now.to_i
+      hour=(remain/3600).to_i
+      min=((remain%3600)/60).to_i
+      sec=((remain)%60).to_i
 
-    if(remain<=0)
-      post
-    else 
-      syspost "Notice:あと#{(hour==0)?"":(hour.to_s+"時間")}#{(min==0 && hour==0)?"":(min.to_s+"分")}#{sec}秒±60秒以内につぶやきます。"
+      if(remain<=0) post
+      else syspost "Notice:あと#{(hour==0)?"":(hour.to_s+"時間")}#{(min==0 && hour==0)?"":(min.to_s+"分")}#{sec}秒±60秒以内につぶやきます。"
+      end
     end
   end
 end
