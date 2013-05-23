@@ -19,12 +19,17 @@ mikutterで動くbot作りたかったので、作りました。
     mikutter用プラグインです。
 
 ## インストール
-お好きなフォルダで、`git clone`するだけです。
+動作には、MySQL3とMeCab、そしてMeCabの辞書が必要です。  
+ダウンロードとインストールは、お好きなディレクトリで、`git clone`するだけです。  
 
 * 通常インストール  
   `$ git clone git@github.com:syusui-s/dbot.git`
 * mikutterで使う場合  
   ` $ git clone git@github.com:syusui-s/dbot.git ~/.mikutter/plugin/mikutter_dbot`
+* 自力でzip落とす
+  ` $ wget https://github.com/syusui-s/dbot/archive/master.zip`  
+  通常の場合はunzipコマンドなどで解凍するだけ。  
+  mikutterに導入の場合 `~/.mikutter/plugin/mikutter_dbot`というフォルダにリネーム。
 
 ## 使い方
 ここでは、import\_twilog.rbを使ってDBを作り、そのDBを用いて文章生成する方法を書いておきます。
