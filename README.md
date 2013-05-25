@@ -23,9 +23,9 @@ mikutterで動くbot作りたかったので、作りました。
 ダウンロードとインストールは、お好きなディレクトリで、`git clone`するだけです。  
 
 * 通常インストール  
-  `$ git clone git@github.com:syusui-s/dbot.git`
+  `$ git clone git://github.com/syusui-s/dbot.git`
 * mikutterで使う場合  
-  ` $ git clone git@github.com:syusui-s/dbot.git ~/.mikutter/plugin/mikutter_dbot`
+  ` $ git clone git://github.com/syusui-s/dbot.git ~/.mikutter/plugin/mikutter_dbot`
 * 自力でzip落とす
   ` $ wget https://github.com/syusui-s/dbot/archive/master.zip`  
   通常の場合はunzipコマンドなどで解凍するだけ。  
