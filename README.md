@@ -56,7 +56,7 @@ mikutterで動くbot作りたかったので、作りました。
 ## 生成方法の追加
 generator.rbのSentenceGeneratorクラスに、「gen\_」から始まるインスタンスメソッドを追加してください。  
 	
-	def SentenceGenerator
+	class SentenceGenerator
 	  def gen_hogehoge
 	  # ここに生成方法を書く
 	  end
