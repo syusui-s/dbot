@@ -54,8 +54,8 @@ sqliteは`gem install sqlite`やBundlerを使って導入出来ます。
   インタプリタで実行してみます。  
   ./test.dbには3で作ったDBファイルのパスを指定してください。
 
-  		require './generator'
-  		gen=SentenceGenerator.new(WordsDB("./test.db"))
+  		require './generator.rb'
+  		gen=SentenceGenerator.new(WordsDB.new("./words.db"))
   		gen.random
 
 ## 生成方法の追加
