@@ -6,9 +6,9 @@ require 'MeCab'
 # dbotは、MeCabのデフォルトの辞書を利用します。
 # 他の辞書が使いたいときは、MECAB_DICDIRにディレクトリのパスを文字列型（String）で指定してください。
 # 例:
-# MECAB_DICDIR = File.expand_path(File.join(File.dirname(__FILE__), "unidic-mecab-2.1.2_src/unidic/"))
+MECAB_DICDIR = File.expand_path(File.join(File.dirname(__FILE__), "unidic/"))
 
-MecabParse =  MeCab::Tagger.new (defined?(MECAB_DICDIR) ? "-d #{MECAB_DICDIR}" : "")
+#MecabParse =  MeCab::Tagger.new (defined?(MECAB_DICDIR) ? "-d #{MECAB_DICDIR}" : "")
 
 =begin
 テーブルの一覧
@@ -146,7 +146,7 @@ class WordsDB
     for i in -1..(arr.length-1)
       id = (i == -1) ? 0 : arr[i][0]
       succ = (i+1) < arr.length ? arr[i+1][0] : 0
-      data=match_id_succ(id,succ)
+      data=match_succlist_id_succ(id,succ)
       
       # 見つからないなら、新しく追加
       if data.empty? then
