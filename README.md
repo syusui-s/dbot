@@ -19,7 +19,12 @@ mikutterで動くbot作りたかったので、作りました。
     mikutter用プラグインです。
 
 ## インストール
-動作には、MySQL3とMeCab、そしてMeCabの辞書が必要です。  
+動作には、MySQL3とMeCab、そしてMeCabの辞書、
+Rubyのライブラリ、mecab-rubyとsqliteが必要です。  
+mecab-rubyは、自分でビルドするか、お使いのディストリビューションのリポジトリからインストールしてください。  
+sqliteは`gem install sqlite`やBundlerを使って導入出来ます。
+
+
 ダウンロードとインストールは、お好きなディレクトリで、`git clone`するだけです。  
 
 * 通常インストール  
@@ -35,7 +40,7 @@ mikutterで動くbot作りたかったので、作りました。
 ここでは、import\_twilog.rbを使ってDBを作り、そのDBを用いて文章生成する方法を書いておきます。
 
 1. Twilogから過去のツイートのアーカイブ(UTF-8)をダウンロードし、展開する。  
-  `$ gzip -d username_130522.csv.gz`  
+  `$ gunzip username_130522.csv.gz`  
 2. import\_twilog.rb を用いて、DBを生成する。  
   この作業は時間がかかりますので、気長にお待ちください。  
   実行権限がない場合は、`$ chmod +x ./import_twilog.rb`して、実行できるようにしてください。  
@@ -49,14 +54,14 @@ mikutterで動くbot作りたかったので、作りました。
   インタプリタで実行してみます。  
   ./test.dbには3で作ったDBファイルのパスを指定してください。
 
-  		require './generator'
-  		gen=SentenceGenerator.new(WordsDB("./test.db"))
+  		require './generator.rb'
+  		gen=SentenceGenerator.new(WordsDB.new("./words.db"))
   		gen.random
 
 ## 生成方法の追加
 generator.rbのSentenceGeneratorクラスに、「gen\_」から始まるインスタンスメソッドを追加してください。  
 	
-	def SentenceGenerator
+	class SentenceGenerator
 	  def gen_hogehoge
 	  # ここに生成方法を書く
 	  end
