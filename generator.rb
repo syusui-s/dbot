@@ -13,7 +13,7 @@ class SentenceGenerator
 
   # 生成メソッドをランダムに選択し、それの実行結果を返す。
   def random()
-    self.exec(self.gen_methods.shuffle[0]) end
+    self.exec(self.generator_methods.shuffle[0]) end
 
   # 引数に指定されたメソッドを実行する
   # ==== Args
@@ -23,8 +23,8 @@ class SentenceGenerator
     self.__send__(symbol) end
 
   # 生成メソッドのリストを返す。シンボルで返す。
-  def SentenceGenerator.gen_methods()
-    instance_methods.grep(/gen\_/) end
+  def generator_methods()
+    self.class.instance_methods.grep(/gen\_/) end
 
   # 以下に文章生成メソッドを書いていく。
   # gen_から始まるメソッドでないと、gen_methodsから認識されない。
@@ -39,8 +39,9 @@ class SentenceGenerator
     while data[0] != 0 and data[1] != "。"
       nxt=@db.random_succ_match_id(nxt)[0][1]
       data=@db.match_id(nxt)[0]
-      result+=data[1]
+      result+=data[1].to_s
     end
     result
   end
+
 end

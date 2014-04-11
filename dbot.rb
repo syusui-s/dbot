@@ -6,7 +6,7 @@ require 'MeCab'
 # dbotは、MeCabのデフォルトの辞書を利用します。
 # 他の辞書が使いたいときは、MECAB_DICDIRにディレクトリのパスを文字列型（String）で指定してください。
 # 例:
-# MECAB_DICDIR = File.expand_path(File.join(File.dirname(__FILE__), "unidic-mecab-2.1.2_src/unidic/"))
+MECAB_DICDIR = File.expand_path(File.join(File.dirname(__FILE__), "unidic"))
 
 MecabParse =  MeCab::Tagger.new (defined?(MECAB_DICDIR) ? "-d #{MECAB_DICDIR}" : "")
 
@@ -55,7 +55,7 @@ class WordsDB
     @db.execute(sql2)
     @db.execute("insert into words values(0,'','')")
   end
-  
+
   # DBのクローズ
   def close()
     if not @db.closed? then
@@ -147,7 +147,7 @@ class WordsDB
       id = (i == -1) ? 0 : arr[i][0]
       succ = (i+1) < arr.length ? arr[i+1][0] : 0
       data=match_id_succ(id,succ)
-      
+
       # 見つからないなら、新しく追加
       if data.empty? then
         @db.execute("insert into succlist values(?,?,1)",id,succ)
@@ -158,7 +158,6 @@ class WordsDB
       end
     end
   end
-
 end
 
 # 文をパースするモジュール。他の形態素解析ソフトウェアにも対応できるようにするためのモジュール化。
